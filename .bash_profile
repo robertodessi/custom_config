@@ -12,7 +12,7 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation | -i asks for permission to overwrite | -v verbose
 alias mv='mv -iv'                           # Preferred 'mv' implementation | -i asks for permission to overwrite | -v verbose
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation | -p creates intermidiate directories if requires
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation | -p creates intermidiate directories if required
                                             # e.g. mkdir Desktop/foo/bar creates foo if it does not exists
 alias ll='ls -FlAhp'                        # Preferred 'ls' implementation
 alias less='less -FRXc'                     # Preferred 'less' implementation
@@ -20,8 +20,9 @@ cd() { builtin cd "$@"; ll; }               # Always list directory contents upo
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias ~="cd ~"                              # ~:            Go Home
+alias desk='cd ~/Desktop'                   # desk:         Go to the Desktop folder
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias c='clear'                             # c:            Clear terminal display
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
 alias show_options='shopt'                  # Show_options: display bash options settings
@@ -29,9 +30,15 @@ alias cic='set completion-ignore-case On'   # cic:          Make tab-completion 
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
-p () { qlmanage -p "$1" >& /dev/null;}      # p:            Opens the file in MacOS Quicklook Preview
+prev() { qlmanage -p "$1" >& /dev/null;}    # prev:         Opens the file in MacOS Quicklook Preview
 pdf() { open -a /Applications/Preview.app/ "$1" ;} # pdf:   Opens the file in MacOS Preview
-empty() { rm -rf ~/.Trash/*; }                  #empty:         Empties the Trash
+empty() { rm -rf ~/.Trash/*; }              # empty:        Empties the Trash
+alias doc="less ~/.bash_profile"            # doc:          Show (using less) .bash_profile
+vlc() { open -a /Applications/VLC.app/ "$1" ;}  # vlc:      Open the file with vlc
+alias show_trash="ls ~/.Trash/"             # show_trash:   Shows the content of the Trash
+app() { open -a /Applications/"$1".app/ ;}  # app:          Opens the application passed as an argument
+alias calc="bc -l"                          # calc:         Starts a cli calculator
+alias show_app="ls /Applications/"          # show_app      Showing all the app in the Applications folder
 
 
 #   ---------------------------
@@ -39,9 +46,9 @@ empty() { rm -rf ~/.Trash/*; }                  #empty:         Empties the Tras
 #   ---------------------------
 
 alias search="find . -name "                   # search:    Quickly search for file
-ff () { /usr/bin/find . -name "$@" ; }         # ff:       Find file under the current directory
-fstarts () { /usr/bin/find . -name "$@"'*' ; } # fstarts:      Find file whose name starts with a given string
-fends () { /usr/bin/find . -name '*'"$@" ; }   # fends:      Find file whose name ends with a given string
+ff () { /usr/bin/find . -name "$@" ; }         # ff:        Find file under the current directory
+fstarts () { /usr/bin/find . -name "$@"'*' ; } # fstarts:   Find file whose name starts with a given string
+fends () { /usr/bin/find . -name '*'"$@" ; }   # fends:     Find file whose name ends with a given string
 
 #   spotlight: Search for a file using MacOS Spotlight's metadata
 #   -----------------------------------------------------------
@@ -104,7 +111,8 @@ alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listenin
 #   finderShowHidden:   Show hidden files in Finder
 #   finderHideHidden:   Hide hidden files in Finder
 #   -------------------------------------------------------------------
-    alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-        alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+
+alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
+alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 
 
