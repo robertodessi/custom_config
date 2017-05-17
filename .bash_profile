@@ -38,8 +38,11 @@ vlc() { open -a /Applications/VLC.app/ "$1" ;}  # vlc:      Open the file with v
 alias show_trash="ls ~/.Trash/"             # show_trash:   Shows the content of the Trash
 app() { open -a /Applications/"$1".app/ ;}  # app:          Opens the application passed as an argument
 alias calc="bc -l"                          # calc:         Starts a cli calculator
-alias show_app="ls /Applications/"          # show_app      Showing all the app in the Applications folder
-
+alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
+alias upd="source ~/.bash_profile"          # upd:          Sources this file after edits has been made
+alias create="touch"                        # create:       Uses the word create rather than touch to create a new file, not really a shortcut but
+                                            #               this way it makes more sense to me
+alias edit_config="vim ~/.bash_profile"     # edit_config:  Opens this file with vim
 
 #   ---------------------------
 #   SEARCHING
