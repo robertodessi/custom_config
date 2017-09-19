@@ -7,7 +7,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
 #   ---------------------------------
-#   ALIASES AND FUNCTIONS
+#   1. ALIASES AND FUNCTIONS
 #   ---------------------------------
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation | -i asks for permission to overwrite | -v verbose
@@ -41,11 +41,18 @@ alias calc="bc -l"                          # calc:         Starts a cli calcula
 alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
 alias upd="source ~/.bash_profile"          # upd:          Sources this file after edits has been made
 alias create="touch"                        # create:       Uses the word create rather than touch to create a new file, not really a shortcut but
-                                            #               this way it makes more sense to me
+                                            #               this way it makes more sense to me    
+alias todo="todolist"                       # todo:         Call the todolist cmdline app                    
+
+                                            
 alias edit_config="vim ~/.bash_profile"     # edit_config:  Opens this file with vim
+alias doc_git="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/git_notes.txt"
+alias doc_vim="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/vim_notes.txt"
+alias doc_screen="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/screen_notes.txt"
+
 
 #   ---------------------------
-#   SEARCHING
+#   2. SEARCHING
 #   ---------------------------
 
 alias search="find . -name "                   # search:    Quickly search for file
@@ -58,8 +65,49 @@ fends () { /usr/bin/find . -name '*'"$@" ; }   # fends:     Find file whose name
     spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 
 
-#   ---------------------------    
-#   EXTRACT
+
+#   ---------------------------
+#   3. NETWORKING
+#   ---------------------------
+
+alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
+alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
+alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
+alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
+alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
+alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
+alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
+
+#   ii:     display useful host related informaton
+#   -------------------------------------------------------------------
+    ii() {
+        echo -e "\nYou are logged on ${RED}$HOST"
+        echo -e "\nAdditionnal information:$NC " ; uname -a
+        echo -e "\n${RED}Users logged on:$NC " ; w -h
+        echo -e "\n${RED}Current date :$NC " ; date
+        echo -e "\n${RED}Machine stats :$NC " ; uptime
+        echo -e "\n${RED}Current network location :$NC " ; scselect
+        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+        echo
+    }
+
+
+
+#   ---------------------------
+#   4. MISC
+#   ---------------------------
+
+#   finderShowHidden:   Show hidden files in Finder
+#   finderHideHidden:   Hide hidden files in Finder
+#   -------------------------------------------------------------------
+
+alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
+alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+
+
+#   extract:    extract almost file compressed in almost any format    
 #   ---------------------------
     extract () {
       if [ -f $1 ] ; then
@@ -83,39 +131,15 @@ fends () { /usr/bin/find . -name '*'"$@" ; }   # fends:     Find file whose name
   }
 
 
+#   kill_screen:    kill all detached screen sessions
 #   ---------------------------
-#   6. NETWORKING
-#   ---------------------------
 
-alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
-alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
-alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
-alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
-alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
-alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
-alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
-alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
-alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
+# kill_screen () { for session in $(screen -ls | grep -o '[0-9]\+') do screen -S "${session}" -X quit; done }
 
-#   ii:  display useful host related informaton
-#   -------------------------------------------------------------------
-    ii() {
-        echo -e "\nYou are logged on ${RED}$HOST"
-        echo -e "\nAdditionnal information:$NC " ; uname -a
-        echo -e "\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\n${RED}Current date :$NC " ; date
-        echo -e "\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\n${RED}Current network location :$NC " ; scselect
-        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
-        echo
-    }
-
-
-#   finderShowHidden:   Show hidden files in Finder
-#   finderHideHidden:   Hide hidden files in Finder
-#   -------------------------------------------------------------------
-
-alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
+kill_screen () {
+    for session in $(screen -ls | grep -o '[0-9]\{5\}')
+    do
+        screen -S "${session}" -X quit;
+    done
+}
 
