@@ -6,6 +6,12 @@ export EDITOR=/usr/bin/vim
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+
+# ======
+# Reminder:
+# <command> | peco is an interactive filtering command
+# ====
+
 #   ---------------------------------
 #   1. ALIASES AND FUNCTIONS
 #   ---------------------------------
@@ -26,7 +32,6 @@ alias f='open -a Finder ./'                 # f:            Opens current direct
 alias c='clear'                             # c:            Clear terminal display
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
 alias show_options='shopt'                  # Show_options: display bash options settings
-alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
@@ -41,10 +46,13 @@ alias calc="bc -l"                          # calc:         Starts a cli calcula
 alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
 alias upd="source ~/.bash_profile"          # upd:          Sources this file after edits has been made
 alias create="touch"                        # create:       Uses the word create rather than touch to create a new file, not really a shortcut but
-                                            #               this way it makes more sense to me    
-alias todo="todolist"                       # todo:         Call the todolist cmdline app                    
+                                            #               this way it makes more sense to me 
+alias todo="todolist"                       # todo:         Call the todolist cmdline app (documentation: http://todolist.site/) 
 
-                                            
+case_sensitive() { echo "set completion-ignore-case On" > ~/.inputrc; } 
+case_insensitive() { echo "set completion-ignore-case Off" > ~/.inputrc; }
+
+
 alias edit_config="vim ~/.bash_profile"     # edit_config:  Opens this file with vim
 alias doc_git="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/git_notes.txt"
 alias doc_vim="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/vim_notes.txt"
@@ -142,4 +150,22 @@ kill_screen () {
         screen -S "${session}" -X quit;
     done
 }
+
+#   bash commands needed for virtulenvwrapper
+#   ---------------------------
+#
+#   to create a virtualenv with a specified version of python the followin command must be ran:   
+#   mkvirtualenv -p /usr/local/bin/python3 $WORKON_HOME/<virtualenv name>
+#
+#   a destination directory for the working project must be specified ($WORKON_HOME/<virtualenv name> in this case)
+#
+
+#   Virtualenvs location. All the new virtualenvs will be placed inside a directory there (e.g. when "mkvirtualenv mynewenv" is typed the new venv will be placed in 
+#   $HOME/.virtualenvs/mynewenv)
+export WORKON_HOME=$HOME/.virtualenvs
+#   Python version to be used when creating a new virtualenv
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+
+
 
