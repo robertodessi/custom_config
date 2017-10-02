@@ -45,9 +45,16 @@ app() { open -a /Applications/"$1".app/ ;}  # app:          Opens the applicatio
 alias calc="bc -l"                          # calc:         Starts a cli calculator
 alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
 alias upd="source ~/.bash_profile"          # upd:          Sources this file after edits has been made
-alias create="touch"                        # create:       Uses the word create rather than touch to create a new file, not really a shortcut but
+alias create="touch"                        # create:       Uses the word create rather than touch to create a new file (not really a shortcut :/)
                                             #               this way it makes more sense to me 
 alias todo="todolist"                       # todo:         Call the todolist cmdline app (documentation: http://todolist.site/) 
+alias class="cd /Users/robertodessi/Desktop/Classes"
+alias cl="cd /Users/robertodessi/Desktop/Classes/CompLing"
+
+latexpdf () {
+    pdflatex $1
+    pdf *.pdf
+}
 
 case_sensitive() { echo "set completion-ignore-case On" > ~/.inputrc; } 
 case_insensitive() { echo "set completion-ignore-case Off" > ~/.inputrc; }
@@ -57,7 +64,7 @@ alias edit_config="vim ~/.bash_profile"     # edit_config:  Opens this file with
 alias doc_git="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/git_notes.txt"
 alias doc_vim="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/vim_notes.txt"
 alias doc_screen="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/screen_notes.txt"
-
+alias doc_venv="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/venv_notes.txt"
 
 #   ---------------------------
 #   2. SEARCHING
