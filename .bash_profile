@@ -10,6 +10,8 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # ======
 # Reminder:
 # <command> | peco is an interactive filtering command
+#
+#   mdfind search using spotlight db (thus searching through data and metadata   
 # ====
 
 #   ---------------------------------
@@ -48,6 +50,10 @@ alias upd="source ~/.bash_profile"          # upd:          Sources this file af
 alias create="touch"                        # create:       Uses the word create rather than touch to create a new file (not really a shortcut :/)
                                             #               this way it makes more sense to me 
 alias todo="todolist"                       # todo:         Call the todolist cmdline app (documentation: http://todolist.site/) 
+
+alias hidden_files_yes="defaults write com.apple.finder AppleShowAllFiles YES"
+alias hidden_files_no="defaults write com.apple.finder AppleShowAllFiles NO"
+
 alias class="cd /Users/robertodessi/Desktop/Classes"
 alias cl="cd /Users/robertodessi/Desktop/Classes/CompLing"
 
