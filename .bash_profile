@@ -2,6 +2,8 @@
 #  My first .bash_profile file
 #  ---------------------------------------------------------------------------
 
+# total no. of lines: 207
+
 export EDITOR=/usr/bin/vim
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -17,6 +19,12 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 #   ---------------------------------
 #   1. ALIASES AND FUNCTIONS
 #   ---------------------------------
+
+# =====
+# Temp Aliases (needed for current projects)
+alias sumpy='cd ~/Desktop/sumpy_code'
+alias scan="cd /Users/robertodessi/Desktop/scanexp/code"
+# =====
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation | -i asks for permission to overwrite | -v verbose
 alias mv='mv -iv'                           # Preferred 'mv' implementation | -i asks for permission to overwrite | -v verbose
@@ -54,8 +62,12 @@ alias todo="todolist"                       # todo:         Call the todolist cm
 alias hidden_files_yes="defaults write com.apple.finder AppleShowAllFiles YES"
 alias hidden_files_no="defaults write com.apple.finder AppleShowAllFiles NO"
 
-alias class="cd /Users/robertodessi/Desktop/Classes"
-alias cl="cd /Users/robertodessi/Desktop/Classes/CompLing"
+#   ---------------------------
+#   SSH aliases 
+#   ---------------------------
+
+alias clic="ssh roberto.dessi@clic.cimec.unitn.it"
+
 
 latexpdf () {
     pdflatex $1
@@ -65,6 +77,9 @@ latexpdf () {
 case_sensitive() { echo "set completion-ignore-case On" > ~/.inputrc; } 
 case_insensitive() { echo "set completion-ignore-case Off" > ~/.inputrc; }
 
+#   ---------------------------
+#    config files
+#   ---------------------------
 
 alias edit_config="vim ~/.bash_profile"     # edit_config:  Opens this file with vim
 alias doc_git="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/git_notes.txt"
@@ -179,6 +194,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 #   Python version to be used when creating a new virtualenv
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
+
 
 
 
