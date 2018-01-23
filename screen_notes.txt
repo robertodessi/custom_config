@@ -1,0 +1,37 @@
+Screen cheat sheet
+
+screen -r <name> ([pid.sessionname]) sessionowner/[pid.sessionname]                           # attach to screen named <name>
+screen -r                                   # attach to screen session when only one is available
+screen -S <name>                            # start screen session named <name>
+screen -ls                                  # list screen sessions
+screen -S
+screen -X -S [session #] quit               # detach screen session
+screen -t <name>                            # Set the title (name) for the default shell or specified program
+
+
+Ctrl-a c                                    # create new window
+Ctrl-a Ctrl-a                               # change to last visited window
+Ctrl-a w                                    # show window bar 
+Ctrl-a k                                    # kill current window
+Ctrl-a \                                    # kill all windows 
+Ctrl-a S
+Ctrl-a tab
+Ctrl-a
+Ctrl-a
+Ctrl-a
+Ctrl-a
+Ctrl-a
+Ctrl-a
+Ctrl-a
+Ctrl-a x                                    # it will require a password to access the session again.
+Ctrl-a c                                    # create a new window
+Ctrl-a X                                    # remove current tab from split mode (in split screen mode)
+Ctrl-a Q                                    # remove all regions but the current one (in split screen mode)
+Ctrl-a ?                                    # display help page
+
+
+link to a nice vim cheat sheet: http://www.fprintf.net/vimCheatSheet.html
+
+
+
+
