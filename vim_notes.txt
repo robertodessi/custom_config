@@ -38,4 +38,3 @@ replace all occurrences of foo with bar
 
 :6,10s/foo/bar/g
 replace all occ of foo with bar in specific lines
-
