@@ -1,200 +1,43 @@
-#  ---------------------------------------------------------------------------
-#  My first .bash_profile file
-#  ---------------------------------------------------------------------------
-
-# total no. of lines: 207
 
 export EDITOR=/usr/bin/vim
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
+#export CLICOLOR=1
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+
+alias ls='ls --color'
+LS_COLORS='di=34:fi=33:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=32:*.rpm=90'
+export LS_COLORS
 
 
-# ======
-# Reminder:
-# <command> | peco is an interactive filtering command
-#
-#   mdfind search using spotlight db (thus searching through data and metadata   
-# ====
-
-#   ---------------------------------
-#   1. ALIASES AND FUNCTIONS
-#   ---------------------------------
-
-# =====
-# Temp Aliases (needed for current projects)
-alias sumpy='cd ~/Desktop/sumpy_code'
-alias scan="cd /Users/robertodessi/Desktop/scanexp/code"
-# =====
-
+alias p='python3'
+alias e='exit'
 alias cp='cp -iv'                           # Preferred 'cp' implementation | -i asks for permission to overwrite | -v verbose
 alias mv='mv -iv'                           # Preferred 'mv' implementation | -i asks for permission to overwrite | -v verbose
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation | -p creates intermidiate directories if required
-                                            # e.g. mkdir Desktop/foo/bar creates foo if it does not exists
-alias ll='ls -FlAhp'                        # Preferred 'ls' implementation
+alias fair='cd ~/FBK-fairseq'
+bleu() { perl ~/multi-bleu.perl $2 < $1 ;}
+
+# e.g. mkdir Desktop/foo/bar creates foo if it does not exists
+alias ll='ls -FlAhpt'                       # Preferred 'ls' implementation                                                                                                              
 alias less='less -FRXc'                     # Preferred 'less' implementation
-cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias ~="cd ~"                              # ~:            Go Home
-alias desk='cd ~/Desktop'                   # desk:         Go to the Desktop folder
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias c='clear'                             # c:            Clear terminal display
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-alias show_options='shopt'                  # Show_options: display bash options settings
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
-prev() { qlmanage -p "$1" >& /dev/null;}    # prev:         Opens the file in MacOS Quicklook Preview
-pdf() { open -a /Applications/Preview.app/ "$1" ;} # pdf:   Opens the file in MacOS Preview
-empty() { rm -rf ~/.Trash/*; }              # empty:        Empties the Trash
 alias doc="less ~/.bash_profile"            # doc:          Show (using less) .bash_profile
-vlc() { open -a /Applications/VLC.app/ "$1" ;}  # vlc:      Open the file with vlc
-alias show_trash="ls ~/.Trash/"             # show_trash:   Shows the content of the Trash
-app() { open -a /Applications/"$1".app/ ;}  # app:          Opens the application passed as an argument
-alias calc="bc -l"                          # calc:         Starts a cli calculator
-alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
-alias upd="source ~/.bash_profile"          # upd:          Sources this file after edits has been made
-alias create="touch"                        # create:       Uses the word create rather than touch to create a new file (not really a shortcut :/)
-                                            #               this way it makes more sense to me 
-alias todo="todolist"                       # todo:         Call the todolist cmdline app (documentation: http://todolist.site/) 
-
-alias hidden_files_yes="defaults write com.apple.finder AppleShowAllFiles YES"
-alias hidden_files_no="defaults write com.apple.finder AppleShowAllFiles NO"
-
-#   ---------------------------
-#   SSH aliases 
-#   ---------------------------
-
-alias clic="ssh roberto.dessi@clic.cimec.unitn.it"
-
-
-latexpdf () {
-    pdflatex $1
-    pdf *.pdf
-}
-
-case_sensitive() { echo "set completion-ignore-case On" > ~/.inputrc; } 
-case_insensitive() { echo "set completion-ignore-case Off" > ~/.inputrc; }
-
-#   ---------------------------
-#    config files
-#   ---------------------------
-
+alias upd="source ~/.bash_profile"                # upd:          Sources this file after edits has been made
 alias edit_config="vim ~/.bash_profile"     # edit_config:  Opens this file with vim
-alias doc_git="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/git_notes.txt"
-alias doc_vim="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/vim_notes.txt"
-alias doc_screen="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/screen_notes.txt"
-alias doc_venv="less /Users/robertodessi/Desktop/Roberto/ComputerScience/custom_config/venv_notes.txt"
-
-#   ---------------------------
-#   2. SEARCHING
-#   ---------------------------
-
-alias search="find . -name "                   # search:    Quickly search for file
-ff () { /usr/bin/find . -name "$@" ; }         # ff:        Find file under the current directory
-fstarts () { /usr/bin/find . -name "$@"'*' ; } # fstarts:   Find file whose name starts with a given string
-fends () { /usr/bin/find . -name '*'"$@" ; }   # fends:     Find file whose name ends with a given string
-
-#   spotlight: Search for a file using MacOS Spotlight's metadata
-#   -----------------------------------------------------------
-    spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 
 
+# added by Anaconda3 installer
+export PATH="/home/rdessi/sw/anaconda3/bin:$PATH"
 
-#   ---------------------------
-#   3. NETWORKING
-#   ---------------------------
+export LD_LIBRARY_PATH=/hardmnt/hltmt-gpu-c0/data/software/cuda_installed/cuda_9.1/lib64:/hardmnt/hltmt-gpu-c0/data/software/cuda_installed/cuda_9.1/extras/CUPTI/lib64
+export CUDA_HOME=/hardmnt/hltmt-gpu-c0/data/software/cuda_installed/cuda_9.1
 
-alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
-alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
-alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
-alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
-alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
-alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
-alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
-alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
-alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
-
-#   ii:     display useful host related informaton
-#   -------------------------------------------------------------------
-    ii() {
-        echo -e "\nYou are logged on ${RED}$HOST"
-        echo -e "\nAdditionnal information:$NC " ; uname -a
-        echo -e "\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\n${RED}Current date :$NC " ; date
-        echo -e "\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\n${RED}Current network location :$NC " ; scselect
-        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
-        echo
-    }
-
-
-
-#   ---------------------------
-#   4. MISC
-#   ---------------------------
-
-#   finderShowHidden:   Show hidden files in Finder
-#   finderHideHidden:   Hide hidden files in Finder
-#   -------------------------------------------------------------------
-
-alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
-
-#   extract:    extract almost file compressed in almost any format    
-#   ---------------------------
-    extract () {
-      if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xjf $1     ;;
-            *.tar.gz)    tar xzf $1     ;;
-            *.bz2)       bunzip2 $1     ;;
-            *.rar)       unrar e $1     ;;
-            *.gz)        gunzip $1      ;;
-            *.tar)       tar xf $1      ;;
-            *.tbz2)      tar xjf $1     ;;
-            *.tgz)       tar xzf $1     ;;
-            *.zip)       unzip $1       ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1        ;;
-            *)     echo "'$1' cannot be extracted via extract()" ;;
-              esac
-      else
-          echo "'$1' is not a valid file"    
-      fi
-  }
-
-
-#   kill_screen:    kill all detached screen sessions
-#   ---------------------------
-
-# kill_screen () { for session in $(screen -ls | grep -o '[0-9]\+') do screen -S "${session}" -X quit; done }
-
-kill_screen () {
-    for session in $(screen -ls | grep -o '[0-9]\{5\}')
-    do
-        screen -S "${session}" -X quit;
-    done
-}
-
-#   bash commands needed for virtulenvwrapper
-#   ---------------------------
-#
-#   to create a virtualenv with a specified version of python the followin command must be ran:   
-#   mkvirtualenv -p /usr/local/bin/python3 $WORKON_HOME/<virtualenv name>
-#
-#   a destination directory for the working project must be specified ($WORKON_HOME/<virtualenv name> in this case)
-#
-
-#   Virtualenvs location. All the new virtualenvs will be placed inside a directory there (e.g. when "mkvirtualenv mynewenv" is typed the new venv will be placed in 
-#   $HOME/.virtualenvs/mynewenv)
-export WORKON_HOME=$HOME/.virtualenvs
-#   Python version to be used when creating a new virtualenv
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
-
-
-
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/hardmnt/hltmt-gpu-c0/data/software/cuda_installed/cuda_9.0/lib64
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/hardmnt/hltmt-gpu-c0/data/software/cuda_installed/cuda_8.0/lib64
 

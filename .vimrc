@@ -1,52 +1,14 @@
-" to remember: http://vim.wikia.com/wiki/Search_and_replace
-
-set nocompatible              " required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'scrooloose/syntastic'
-Plugin 'nvie/vim-flake8'
-Plugin 'valloric/youcompleteme'
-
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
 let python_highlight_all=1
 syntax on
 
-filetype indent plugin on
-
-"au BufNewFile,BufRead *.py
-"    \ set tabstop=4
-"    \ set softtabstop=4
-"    \ set shiftwidth=4
-"    \ set textwidth=79
-"    \ set expandtab
-"    \ set autoindent
-"    \ set fileformat=unix
-
-
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 
 set number
 set cursorline
-
-" delete workin
-set backspace=indent,eol,start
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -54,11 +16,50 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-:inoremap sd <Esc>
-nnoremap w e
-"nnoremap b w
-" :nnoremap $ 9
+inoremap sd <Esc>
+nnoremap w b
+nnoremap 1 0
+nnoremap 2 $
+" <BS> is backspace i.e. delete key
+inoremap ` <BS>
+"noremap ;; :
 
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
+nnoremap ; :
+nnoremap : ;
+
+nnoremap <Space> G
+
+" <cr> is the enter key
+inoremap ,, <cr>
+" fd then number of buffer and it will open that
+nnoremap fd :ls<CR>:b<Space>
+
+"inoremap ss <Esc>:w<CR> 
+nnoremap ss :w<CR> 
+"inoremap sw <Esc>:wq<CR> 
+nnoremap sw :wq<CR>
+
+command Bd bp | sp | bn | bd
+
+" foldin with space
+nnoremap <space> za  
+
+set swapfile
+set dir=~/.swap_vim
+
+"inoremap a h 
+"inoremap s j 
+"inoremap w k  
+"inoremap d l 
+
+ 
+" " Enable folding
+" " set foldmethod=indent
+"  set foldlevel=99
+
+" to check runtimepath = set runtimepath?
+set runtimepath+=~/.vim/SimpylFold/
+
+
+
+
