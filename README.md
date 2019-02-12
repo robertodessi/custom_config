@@ -1,4 +1,6 @@
-# custom_config
-Starting to build my custom bash vim and screen config.
+# My custom configuration files
+Starting to build my custom bash, vim, screen and latex config.
 
-The bash_profile file is a slightly modified version to be found at https://natelandau.com/my-mac-osx-bash_profile/
+The bash config file is a slightly modified version found [here]( https://natelandau.com/my-mac-osx-bash_profile/)
+
+
