@@ -1,0 +1,69 @@
+# .bashrc
+
+# User specific aliases and functions
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+
+alias ava='module avail'
+alias load_python='module load python3/3.6.3' 
+alias unload_python='module unload python3/3.6.3'
+alias load_cuda='module load cuda/9.1' 
+
+alias scratch='cd /scratch/rdessi'
+
+alias gpu='ssh ansuini@thesentinel.cns.sissa.it'
+alias clic='ssh roberto.dessi@clic.cimec.unitn.it'
+alias scan='cd /u/r/rdessi/Desktop/SCAN-CNN'
+alias gadd='git add --all'
+alias gcomm='git commit'
+alias gpush='git push -u origin'
+alias gstat='git status'
+
+export EDITOR=/usr/bin/vim
+#export CLICOLOR=1
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+
+alias ls='ls --color'
+LS_COLORS='di=34:fi=33:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=32:*.rpm=90'
+export LS_COLORS
+
+alias desk='cd ~/Desktop'
+
+alias e='exit'
+alias cp='cp -iv'                           # Preferred 'cp' implementation | -i asks for permission to overwrite | -v verbose
+alias mv='mv -iv'                           # Preferred 'mv' implementation | -i asks for permission to overwrite | -v verbose
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation | -p creates intermidiate directories if required
+# e.g. mkdir Desktop/foo/bar creates foo if it does not exists
+alias ll='ls -FlAhpt'                       # Preferred 'ls' implementation                                                                                                              
+alias less='less -FRXc'                     # Preferred 'less' implementation
+cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias ~="cd ~"                              # ~:            Go Home
+alias c='clear'                             # c:            Clear terminal display
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias doc="less ~/.bashrc"                  # doc:          Show (using less) .bash_profile
+alias upd="source ~/.bashrc"                # upd:          Sources this file after edits has been made
+alias edit_config="vim ~/.bashrc"           # edit_config:  Opens this file with vim
+
+
+load_p() { module load python3/3.6.3; source /u/r/rdessi/.local/bin/virtualenvwrapper.sh; }
+
+# mkvirtualenv -p /opt/rh/rh-python36/root/usr/bin/python3 $WORKON_HOME/<virtualenv_name>
+
+export WORKON_HOME=/scratch/rdessi/.virtualenvs
+
+export VIRTUALENVWRAPPER_PYTHON=/opt/rh/rh-python36/root/usr/bin/python3
+
+alias venv="source /u/r/rdessi/.local/bin/virtualenvwrapper.sh"
+
+pp() { load_p; venv; }
+
+export PROMPT_COMMAND="__vte_prompt_command"
+
+
