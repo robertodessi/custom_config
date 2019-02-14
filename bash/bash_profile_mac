@@ -48,6 +48,7 @@ alias show_trash="ls ~/.Trash/"             # show_trash:   Shows the content of
 app() { open -a /Applications/"$1".app/ ;}  # app:          Opens the application passed as an argument
 alias calc="bc -l"                          # calc:         Starts a cli calculator
 alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
+del() { trash "$@" ;}
 latexpdf () {
     pdflatex $1
     pdf *.pdf
