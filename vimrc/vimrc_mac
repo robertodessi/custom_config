@@ -1,0 +1,66 @@
+set nocompatible              " required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'valloric/youcompleteme'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+let python_highlight_all=1
+syntax on
+
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+set number
+set cursorline
+
+set title
+" Ignore these files when completing
+set ignorecase              " Default to using case insensitive searches,
+
+" delete workin
+set backspace=indent,eol,start
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap ; :
+nnoremap : ;
+
+" <cr> is the enter key
+inoremap ,, <cr>
+" fd then number of buffer and it will open that
+nnoremap fd :ls<CR>:b<Space>
+
+nnoremap <Space> za
+
+inoremap sd <Esc>
+
+nnoremap ss <Esc>:w<Cr>
+nnoremap sw <Esc>:wq<Cr>
+
+nnoremap w b
+nnoremap 1 0
+nnoremap 2 $
+" <BS> is backspace i.e. delete key
+inoremap ` <BS>
+
+nnoremap vr :vertical resize 
+
+
+autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+autocmd BufRead *.py nmap <F5> :!python %<CR>
+
