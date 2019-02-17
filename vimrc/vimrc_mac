@@ -53,14 +53,19 @@ nnoremap sw <Esc>:wq<Cr>
 
 nnoremap w b
 nnoremap 1 0
-nnoremap 2 $
+nnoremap 2 A
 " <BS> is backspace i.e. delete key
-inoremap ` <BS>
+"inoremap ` <BS>
 
 nnoremap vr :vertical resize 
+inoremap vr :vertical resize 
 
 
 autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 autocmd BufRead *.py nmap <F5> :!python %<CR>
+
+
+" <C-W N> to go from terminal insert mode to terminal normal mode when :term
+" is activated. You can go back to terminal insert mode with i key
 

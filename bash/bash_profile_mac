@@ -49,7 +49,7 @@ app() { open -a /Applications/"$1".app/ ;}  # app:          Opens the applicatio
 alias calc="bc -l"                          # calc:         Starts a cli calculator
 alias show_app="ls /Applications/"          # show_app:     Showing all the app in the Applications folder
 del() { trash "$@" ;}
-latexpdf () {
+lpdf () {
     pdflatex $1
     pdf *.pdf
 }
