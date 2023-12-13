@@ -1,0 +1,19 @@
+hardstatus alwayslastline '%{= kG}[ %{G}%H (system load: %l) %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%D %d.%m.%Y %2c]'
+
+bind ' ' windowlist -b          # binding Ctrl-a space  to list of current screen windows (equivalent of Ctrl-a ")
+
+autodetach on
+
+defscrollback 5000
+
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+
+screen -t terminal 0 bash
+screen -t vim 1 bash
+select 0
+
+source .screen_layout
+layout save def

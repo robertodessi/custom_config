@@ -1,0 +1,102 @@
+call plug#begin()
+
+"Plug 'git@github.com:airblade/vim-gitgutter.git'
+Plug 'git@github.com:mhinz/vim-startify.git'
+Plug 'git@github.com:vim-airline/vim-airline.git'
+Plug 'git@github.com:gruvbox-community/gruvbox.git'
+Plug 'git@github.com:airblade/vim-gitgutter.git'
+Plug 'git@github.com:preservim/nerdtree.git'
+Plug 'git@github.com:preservim/vim-indent-guides.git'
+
+" Plug 'git@github.com:Yggdroot/indentLine.git'
+" Plug 'git@github.com:terryma/vim-multiple-cursors.git'
+
+call plug#end()
+
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2 
+let g:indent_guides_guide_size = 1 
+
+" nerdtree
+autocmd VimEnter * NERDTree | wincmd p
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+let g:NERDTreeFileLines = 1
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" gruvbox
+colorscheme gruvbox
+
+" vim-gitgutter
+set updatetime=100
+
+let python_highlight_all=1
+syntax on
+
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+set number
+set cursorline
+
+set foldmethod=indent 
+
+inoremap sd <Esc>
+vnoremap w b
+nnoremap w b
+nnoremap 1 0
+"nnoremap 3 go till end of line and enter in insert mode
+nnoremap 2 $
+" <BS> is backspace i.e. delete key
+"inoremap ` <BS>
+"noremap ;; :
+
+nnoremap ; :
+nnoremap : ;
+
+
+"inoremap ss <Esc>:w<CR> 
+nnoremap ss :w<CR> 
+"inoremap sw <Esc>:wq<CR> 
+nnoremap sw :wq<CR>
+
+set iskeyword-=_
+
+nnoremap k j
+nnoremap j k
+
+"split navigations
+nnoremap <C-J> <C-W><C-K>
+nnoremap <C-K> <C-W><C-J>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" copy until end of line
+nnoremap oo y$
+
+let mapleader = "`"
+
+
+" nnoremap <leader>tm :belowright term<cr>
+nnoremap <leader>tm :term ++curwin<CR>
+tmap <C-W>v <C-W>:vert term<CR>
+tmap ww <C-W>N<CR>
+tmap <C-W>p <C-W>""
+" nnoremap <CR> i
+
+set pastetoggle=<F3>
+
+"ctrl-w N to switch to terminal-normal mode, (i to go back to insert mode)
+"ctrl-w : will open command mode like in regular Vim.
+"ctrl-w "" will paste

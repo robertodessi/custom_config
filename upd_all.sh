@@ -1,3 +1,7 @@
-cp ~/.bash_profile bash/bash_profile_mac
-cp ~/.screenrc screenrc/screenrc_mac
-cp ~/.vimrc vimrc/vimrc_mac
+cp ~/.profile bash/profile
+cp ~/.bashrc bashrc
+
+cp ~/.screenrc screenrc/screenrc
+cp ~/.screen_layout screenrc/screen_layout
+
+cp ~/.vimrc vimrc/vimrc 
