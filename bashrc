@@ -113,8 +113,10 @@ if ! shopt -oq posix; then
 fi
 
 export EDITOR=/usr/bin/vim
-export CLICOLOR=1
+export CLICOLOR=16
 export LSCOLORS=ExFxBxDxCxegedabagacad
+
+#set t_Co=256
 
 # ======
 # Reminder:
@@ -181,7 +183,6 @@ alias e="exit"
 alias data="cd /mnt/data-gcp/internships/roberto/sealv2"
 alias smi="nvidia-smi"
 
-export TERM=xterm-256color
 
 #   ---------------------------
 #    screen
@@ -227,4 +228,3 @@ unset __conda_setup
 
 # CTRL+A moves the cursor to the beginning of the line.
 # CTRL+E moves the cursor to the end of the line.
-. "$HOME/.cargo/env"

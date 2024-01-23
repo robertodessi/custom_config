@@ -37,6 +37,7 @@ let g:indent_guides_guide_size = 1
 
 " nerdtree
 autocmd VimEnter * NERDTree | wincmd p
+let NERDTreeShowHidden=1
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
@@ -110,7 +111,6 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap oo y$
 
 let mapleader = "`"
-
 
 " nnoremap <leader>tm :belowright term<cr>
 nnoremap <leader>tm :term ++curwin<CR>
