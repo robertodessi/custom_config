@@ -113,14 +113,16 @@ if ! shopt -oq posix; then
 fi
 
 export EDITOR=/usr/bin/vim
-export CLICOLOR=1
+export CLICOLOR=16
 export LSCOLORS=ExFxBxDxCxegedabagacad
+
+#set t_Co=256
 
 # ======
 # Reminder:
 # <command> | peco is an interactive filtering command
 #
-#   mdfind search using spotlight db (thus searching through data and metadata   
+#   mdfind search using spotlight db (thus searching through data and metadata
 # ====
 
 #   ---------------------------------
@@ -163,6 +165,8 @@ alias doc_vim="less ~/.vimrc"
 alias edit_vim="vim ~/.vimrc"
 alias upd="source ~/.bashrc"          # upd:          Sources this file after edits has been made
 
+alias pp="realpath"
+
 #   ---------------------------
 #    conda
 #   ---------------------------
@@ -179,7 +183,6 @@ alias e="exit"
 alias data="cd /mnt/data-gcp/internships/roberto/sealv2"
 alias smi="nvidia-smi"
 
-export TERM=xterm-256color
 
 #   ---------------------------
 #    screen
@@ -220,7 +223,7 @@ unset __conda_setup
 
 
 ### BASH shortcuts
-# CTRL+U to erase everything from the current cursor position to the beginning of the line. 
+# CTRL+U to erase everything from the current cursor position to the beginning of the line.
 # CTRL+K to erase everything from the current cursor position to the end of the line.
 
 # CTRL+A moves the cursor to the beginning of the line.
