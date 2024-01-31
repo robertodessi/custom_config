@@ -101,6 +101,9 @@ set iskeyword-=_
 nnoremap k j
 nnoremap j k
 
+vnoremap k j
+vnoremap j k
+
 "split navigations
 nnoremap <C-J> <C-W><C-K>
 nnoremap <C-K> <C-W><C-J>

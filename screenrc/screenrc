@@ -11,6 +11,11 @@ bind + resize +1
 bind - resize -1
 bind _ resize max
 
+bind u focus down
+bind i focus up
+bind o focus right
+bind y focus left
+
 screen -t terminal 0 bash
 screen -t vim 1 bash
 select 0
