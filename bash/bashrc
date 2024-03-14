@@ -145,6 +145,7 @@ alias c='clear'                             # c:            Clear terminal displ
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 alias doc="less ~/.bashrc"                  # doc:          Show (using less) .bashrc
+alias py="python -m pdb -c c"
 
 #   ---------------------------
 #   git aliases
@@ -178,7 +179,8 @@ alias deact="conda deactivate"
 #    misc
 #   ---------------------------
 
-alias seal="cd /home/robertodessi/sealv2"
+alias seal="cd /home/robertodessi/sealv2/sealv2"
+alias scripts="cd /home/robertodessi/sealv2/scripts"
 alias e="exit"
 alias data="cd /mnt/data-gcp/internships/roberto/sealv2"
 alias smi="nvidia-smi"
@@ -228,3 +230,5 @@ unset __conda_setup
 
 # CTRL+A moves the cursor to the beginning of the line.
 # CTRL+E moves the cursor to the end of the line.
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

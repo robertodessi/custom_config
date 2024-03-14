@@ -5,12 +5,13 @@ Plug 'git@github.com:vim-airline/vim-airline.git'
 Plug 'git@github.com:gruvbox-community/gruvbox.git'
 Plug 'git@github.com:airblade/vim-gitgutter.git'
 Plug 'git@github.com:preservim/nerdtree.git'
-Plug 'git@github.com:preservim/vim-indent-guides.git'
 Plug 'git@github.com:dense-analysis/ale.git'
 Plug 'git@github.com:nvie/vim-flake8.git'
+Plug 'git@github.com:Yggdroot/indentLine.git'
+Plug 'git@github.com:terryma/vim-multiple-cursors.git'
+Plug 'karoliskoncevicius/vim-sendtowindow'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Plug 'git@github.com:Yggdroot/indentLine.git'
-" Plug 'git@github.com:terryma/vim-multiple-cursors.git'
 
 call plug#end()
 
@@ -30,10 +31,35 @@ let g:ale_python_black_options = "-l 120"
 let g:ale_python_flake8_options = '--max-line-length=120 --ignore=E203'
 
 
+" multiple cursors
+" skip with <C-x>, go to previous match <C-p>
+" start and go to next match <C-n>
+
+
+" FZF key bindings
+nnoremap <C-f> :FZF<CR>
+let g:fzf_action = {
+    \'ctrl-t': 'tab split',
+    \ 'ctrl-i': 'split',
+    \ 'ctrl-v': 'vsplit' }
+
+" vim sendtowindow
+" by default <space> l
+
+nmap L <Plug>SendRight
+xmap L <Plug>SendRightV
+nmap H <Plug>SendLeft
+xmap H <Plug>SendLeftV
+nmap J <Plug>SendUp
+xmap J <Plug>SendUpV
+nmap K <Plug>SendDown
+xmap K <Plug>SendDownV
+
+
 " vim-indent-guides
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size = 1
 
 " nerdtree
 autocmd VimEnter * NERDTree | wincmd p
@@ -43,12 +69,15 @@ let NERDTreeShowHidden=1
 autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 let g:NERDTreeFileLines = 1
 
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+"nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " gruvbox
 colorscheme gruvbox
