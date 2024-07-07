@@ -1,5 +1,5 @@
-cp ~/.profile bash/profile
-cp ~/.bashrc bash/bashrc
+# cp ~/.profile bash/profile
+# cp ~/.bashrc bash/bashrc
 
 cp ~/.screenrc screenrc/screenrc
 cp ~/.screen_layout screenrc/screen_layout
