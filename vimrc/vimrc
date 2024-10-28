@@ -4,49 +4,84 @@ Plug 'git@github.com:mhinz/vim-startify.git'
 Plug 'git@github.com:vim-airline/vim-airline.git'
 Plug 'git@github.com:airblade/vim-gitgutter.git'
 Plug 'git@github.com:preservim/nerdtree.git'
-Plug 'git@github.com:dense-analysis/ale.git'
-Plug 'git@github.com:nvie/vim-flake8.git'
 Plug 'git@github.com:Yggdroot/indentLine.git'
-Plug 'git@github.com:terryma/vim-multiple-cursors.git'
-Plug 'karoliskoncevicius/vim-sendtowindow'
+Plug 'git@github.com:neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'git@github.com:github/copilot.vim'
+Plug 'git@github.com:haystackandroid/snow'
 
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" Plug 'karoliskoncevicius/vim-sendtowindow'
+" Plug 'git@github.com:nvie/vim-flake8.git'
+" Plug 'git@github.com:dense-analysis/ale.git'
+" Plug 'git@github.com:terryma/vim-multiple-cursors.git'
 
 call plug#end()
 
-color desert
 
-" ale for linting and fixing
-"let g:ale_linters = {
-"    \    'python': ['flake8']
-"    \}
-let g:ale_fixers = {
-        \    '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \    'python': ['black', 'isort']
-    \}
+"""""""""""""""""""
+" PLUGIN SETTINGS "
+"""""""""""""""""""
+""""""
+" coc.nvim 
+""""""
+set encoding=utf-8
+set nobackup
+set nowritebackup
 
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1
+set updatetime=300
+set signcolumn=yes
 
-let g:ale_python_black_options = "-l 120"
-let g:ale_python_flake8_options = '--max-line-length=120 --ignore=E203'
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set signcolumn=yes
 
-" multiple cursors
-" skip with <C-x>, go to previous match <C-p>
-" start and go to next match <C-n>
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" FZF key bindings
+" function! s:check_back_space() abort
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <C-Space> coc#refresh()
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+""""""
+" copilot
+""""""
+" imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
+
+""""""
+" FZF 
+""""""
 nnoremap <C-f> :FZF<CR>
 let g:fzf_action = {
     \'ctrl-t': 'tab split',
     \ 'ctrl-i': 'split',
     \ 'ctrl-v': 'vsplit' }
 
+""""""
 " vim sendtowindow
-" by default <space> l
-
+""""""
 nmap L <Plug>SendRight
 xmap L <Plug>SendRightV
 nmap H <Plug>SendLeft
@@ -56,13 +91,9 @@ xmap J <Plug>SendUpV
 nmap K <Plug>SendDown
 xmap K <Plug>SendDownV
 
-
-" vim-indent-guides
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_start_level = 2
-"let g:indent_guides_guide_size = 1
-
+""""""
 " nerdtree
+""""""
 autocmd VimEnter * NERDTree | wincmd p
 let NERDTreeShowHidden=1
 
@@ -80,51 +111,50 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 " nnoremap <C-f> :NERDTreeFind<CR>
 
-
+""""""
 " vim-gitgutter
+""""""
 set updatetime=100
 
-" vim-flake88
-"autocmd BufWritePost *.py call flake8#Flake8()
 
-"""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""
+" VIM SETTINGS "
+""""""""""""""""
+set backspace=indent,eol,start
+
+set t_Co=256
+colorscheme desert
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
+set wincolor=NormalAlt
+highlight Normal guibg=black
+highlight NormalAlt guibg=black
+
 
 set colorcolumn=120
-
 let python_highlight_all=1
 syntax on
-
 set tabstop=4
-" when indenting with '>', use 4 spaces width
 set shiftwidth=4
-" On pressing tab, insert 4 spaces
 set expandtab
-
 set number
 set cursorline
-
 set foldmethod=indent
 
 inoremap sd <Esc>
 vnoremap w b
 nnoremap w b
 nnoremap 1 0
-"nnoremap 3 go till end of line and enter in insert mode
 nnoremap 2 $
-" <BS> is backspace i.e. delete key
-"inoremap ` <BS>
-"noremap ;; :
-
 nnoremap ; :
 nnoremap : ;
-
-
-"inoremap ss <Esc>:w<CR>
 nnoremap ss :w<CR>
-"inoremap sw <Esc>:wq<CR>
 nnoremap sw :wq<CR>
+" copy until end of line
+nnoremap oo y$
 
 set iskeyword-=_
+set pastetoggle=<F3>
 
 nnoremap k j
 nnoremap j k
@@ -138,20 +168,22 @@ nnoremap <C-K> <C-W><C-J>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" copy until end of line
-nnoremap oo y$
 
 let mapleader = "`"
 
-" nnoremap <leader>tm :belowright term<cr>
+
+"""""""""""""""""""""
+" Terminal mappings "
+"""""""""""""""""""""
 nnoremap <leader>tm :term ++curwin<CR>
 tmap <C-W>v <C-W>:vert term<CR>
 tmap ww <C-W>N<CR>
 tmap <C-W>p <C-W>""
-" nnoremap <CR> i
 
-set pastetoggle=<F3>
 
+"""""""""""""""""""""""""""
+" Vuffer closing mappings "
+"""""""""""""""""""""""""""
 " Delete buffer while keeping window layout (don't close buffer's windows).
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
 if v:version < 700 || exists('loaded_bclose') || &cp
@@ -225,10 +257,3 @@ endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
 
 nnoremap <silent> <Leader>bd :Bclose<CR>
-
-"<C-W> c remove current split
-
-
-"ctrl-w N to switch to terminal-normal mode, (i to go back to insert mode)
-"ctrl-w : will open command mode like in regular Vim.
-"ctrl-w "" will paste
